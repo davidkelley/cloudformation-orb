@@ -15,7 +15,7 @@ jobs:
       services:
         - docker
       script:
-        - curl -fLSs https://circle.ci/cli | bash
+        - curl -fLSs https://circle.ci/cli | sudo bash
         - docker build -t $DOCKER_IMAGE .
         - npm run pack
         - npm run semantic-release
