@@ -8,5 +8,6 @@ RUN apt-get update && \
   python3-pip \
   python3-setuptools && \
   pip3 install --upgrade pip && \
-  apt-get clean && \
-  pip3 --no-cache-dir install --upgrade awscli
+  apt-get clean
+
+RUN pip3 --no-cache-dir install --upgrade awscli
