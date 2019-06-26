@@ -22,6 +22,11 @@
     {
       "path": "semantic-release-docker",
       "name": "davidkelley/cloudformation-orb"
+    },
+    {
+      "path": "semantic-release-circleci-orb",
+      "orbName": "davidkelley/cloudformation",
+      "orbPath": "publish.yml"
     }
   ]
 }
