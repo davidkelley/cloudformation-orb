@@ -4,17 +4,24 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/git",
     "semantic-release-docker",
-    "semantic-release-circleci-orb"
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "echo '{ \"VERSION\": \"${nextRelease.version}\" }' | npx mustache - orb.yml > publish.yml"
+      }
+    ],
+    [
+      "semantic-release-circleci-orb",
+      {
+        "orbName": "davidkelley/cloudformation",
+        "orbPath": "publish.yml"
+      }
+    ]
   ],
   "publish": [
     {
       "path": "semantic-release-docker",
       "name": "davidkelley/cloudformation-orb"
-    },
-    {
-      "path": "semantic-release-circleci-orb",
-      "orbName": "davidkelley/cloudformation",
-      "orbPath": "orb.yml"
     }
   ]
 }

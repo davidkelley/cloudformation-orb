@@ -17,6 +17,7 @@ jobs:
       script:
         - curl -fLSs https://circle.ci/cli | bash
         - docker build -t $DOCKER_IMAGE .
+        - npm run pack
         - npm run semantic-release
 
 stages:

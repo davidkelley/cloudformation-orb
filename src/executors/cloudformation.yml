@@ -1,6 +1,6 @@
 parameters:
   version:
     type: string
-    default: latest
+    default: "{{VERSION}}"
 docker:
-  - image: davidkelley/test-orb:<<parameters.version>>
+  - image: davidkelley/cloudformation-orb:<<parameters.version>>
