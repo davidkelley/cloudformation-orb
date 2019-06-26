@@ -16,7 +16,7 @@ jobs:
         - docker
       script:
         - curl -fLSs https://circle.ci/cli | sudo bash
-        - docker build -t $DOCKER_IMAGE .
+        - docker build --quiet -t davidkelley/cloudformation-orb .
         - npm run pack
         - npm run semantic-release
 
