@@ -1,0 +1,29 @@
+services:
+  - docker
+
+notifications:
+  email:
+    on_success: never
+
+sudo: false
+
+jobs:
+  include:
+    - stage: release
+      language: node_js
+      node_js: '10'
+      services:
+        - docker
+      script:
+        - curl -fLSs https://circle.ci/cli | bash
+        - docker build -t $DOCKER_IMAGE .
+        - npm run semantic-release
+
+stages:
+  - test
+  - name: release
+    if: branch = master AND type = push AND fork = false
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
