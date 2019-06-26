@@ -1,0 +1,27 @@
+{
+  "name": "cloudformation-orb",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Reproduces the functionality provided by AWS CodePipeline in CircleCI, for deploying CloudFormation templates.",
+  "main": "index.js",
+  "scripts": {
+    "commit": "npx git-cz",
+    "pack": "circleci config pack src/ > orb.yml",
+    "pretest": "npm run pack",
+    "test": "circleci orb validate orb.yml"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-angular": "^8.0.0",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/git": "^7.0.13",
+    "git-cz": "^3.0.1",
+    "husky": "^2.6.0",
+    "semantic-release": "^15.13.17",
+    "semantic-release-circleci-orb": "^1.0.0",
+    "semantic-release-docker": "^2.2.0"
+  }
+}

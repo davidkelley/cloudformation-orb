@@ -1,6 +1,9 @@
 description: |
-  List stack events containing errors in a table.
+  Use the `describe-stack-events` AWS cli command, to list 
+  stack events containing errors in a table.
 
 parameters:
-  stack_name:
+  stack-name:
     type: string
+    description: |
+      The CloudFormation stack name as identified inside AWS.

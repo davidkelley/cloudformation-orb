@@ -2,7 +2,7 @@ steps:
   - run:
       name: Delete CloudFormation stack
       command: |
-        if aws cloudformation describe-stacks --stack-name <<parameters.stack_name>>; then
-          aws cloudformation delete-stack --stack-name <<parameters.stack_name>>
-          aws cloudformation wait stack-delete-complete --stack-name <<parameters.stack_name>>
+        if aws cloudformation describe-stacks --stack-name <<parameters.stack-name>>; then
+          aws cloudformation delete-stack --stack-name <<parameters.stack-name>>
+          aws cloudformation wait stack-delete-complete --stack-name <<parameters.stack-name>>
         fi

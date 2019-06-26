@@ -1,21 +1,53 @@
+description: |
+  Handles the deployment of an AWS CloudFormation template, determining if
+  the stack needs to be created or updated and then waiting for the operation
+  to completely successfully. If you pass the optional `output-json`
+  parameter, stack outputs will be stored inside this file.
+
 executor: cloudformation
 
 parameters:
-  stack_name:
+  stack-name:
     type: string
-  template_file:
+    description: |
+      The CloudFormation stack name as identified inside AWS.
+  template-file:
     type: string
-  input_json:
+    description: |
+      The path to a CloudFormation template file in JSON or YAML format.
+  input-json:
     type: string
-  output_json:
+    description: |
+      The path to a CLI input JSON file in JSON format. This file needs to
+      be compatible with both the `create-stack` and `update-stack` --cli-input-json 
+      AWS CLI operations.
+  output-json:
     type: string
     default: ""
-  before_deploy:
+    description: |
+      The path to the output file that will be created with the
+      CloudFormation stack outputs, in the following format:
+      ```
+      {
+        "Key": "Value"
+      }
+      ```
+  before-deploy:
     type: steps
     default: []
-  after_deploy:
+    description: |
+      A list of steps to be executed immediately before the deployment of the
+      CloudFormation stack. This parameter is useful for merging parameters from
+      previous deployments.
+  after-deploy:
     type: steps
     default: []
+    description: |
+      A list of steps to be executed immediately after the deployment of the
+      CloudFormation stack.
   workspace:
     default: ""
     type: string
+    description: |
+      If this parameter is configured a workspace will be attached at this
+      location.

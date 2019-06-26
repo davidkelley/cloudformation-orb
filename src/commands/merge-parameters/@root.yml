@@ -1,10 +1,26 @@
 description: |
-  Merges a source JSON file, into a target stack skeleton JSON file.
+  Merges source JSON file(s), into a target JSON file, writing the file to
+  a destination.
 
 parameters:
-  source_json:
+  source-json:
     type: string
-  target_json:
+    description: |
+      A path to a file, glob or space-delimeted list of files to use as 
+      source JSON files. These source parameter files must be in the format:
+      ```
+      {
+        "Key": "Value"
+      }
+      ```
+  target-json:
     type: string
-  destination_json:
+    description: |
+      The target file for parameters from the source JSON file(s) to be
+      merged into. This target file may be the JSON returned from
+      `--generate-cli-skeleton`, for examle.
+  destination-json:
     type: string
+    description: |
+      The path to the file that will be written containing the combined
+      JSON of both all source and target files.

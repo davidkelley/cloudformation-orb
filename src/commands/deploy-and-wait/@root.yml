@@ -2,9 +2,17 @@ description: |
   Create/Update an AWS CloudFormation stack and wait for completion.
 
 parameters:
-  input_json:
+  input-json:
     type: string
-  stack_name:
+    description: |
+      The path to a CLI input JSON file in JSON format. This file needs to
+      be compatible with both the `create-stack` and `update-stack` --cli-input-json 
+      AWS CLI operations.
+  stack-name:
     type: string
-  template_file:
+    description: |
+      The CloudFormation stack name as identified inside AWS.
+  template-file:
     type: string
+    description: |
+      The path to a CloudFormation template file in JSON or YAML format.

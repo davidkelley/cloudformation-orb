@@ -1,5 +1,3 @@
-`circleci config pack src/ > orb.yml`
+# CloudFormation CircleCI Orb
 
-`circleci orb publish orb.yml davidkelley/hello-user@dev:0.0.6`
-
-`circleci orb validate orb.yml`
+Reproduces the functionality provided by AWS CodePipeline in CircleCI, for deploying CloudFormation templates.

@@ -1,7 +1,9 @@
 description: |
   If an AWS CloudFormation stack exists, this command will delete the stack 
-  and wait for completion.
+  and wait for the operation to complete successfully.
 
 parameters:
-  stack_name:
+  stack-name:
     type: string
+    description: |
+      The CloudFormation stack name as identified inside AWS.

@@ -4,6 +4,6 @@ steps:
       when: on_fail
       command: |
         aws cloudformation describe-stack-events \
-          --stack-name <<parameters.stack_name>> \
+          --stack-name <<parameters.stack-name>> \
           --output table \
-          --query 'reverse(sort_by(StackEvents, &Timestamp))[?ResourceStatusReason != ""]|[?contains(ResourceStatus, `ROLLBACK`) == `true`].{Name:LogicalResourceId,Message:ResourceStatusReason}'
+          --query 'reverse(sort-by(StackEvents, &Timestamp))[?ResourceStatusReason != ""]|[?contains(ResourceStatus, `ROLLBACK`) == `true`].{Name:LogicalResourceId,Message:ResourceStatusReason}'

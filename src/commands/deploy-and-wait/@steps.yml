@@ -3,21 +3,21 @@ steps:
       name: Deploy CloudFormation template
       command: |
         ARGS="\
-          --stack-name <<parameters.stack_name>> \
-          --cli-input-json file://<<parameters.input_json>> \
-          --template-body file://<<parameters.template_file>> \
+          --stack-name <<parameters.stack-name>> \
+          --cli-input-json file://<<parameters.input-json>> \
+          --template-body file://<<parameters.template-file>> \
           --output table
         "
 
-        cat <<parameters.input_json>> | jq
+        cat <<parameters.input-json>> | jq
 
         OP=create
 
-        if aws cloudformation describe-stacks --stack-name <<parameters.stack_name>>; then
+        if aws cloudformation describe-stacks --stack-name <<parameters.stack-name>>; then
           aws cloudformation update-stack $ARGS
           OP=update
         else
           aws cloudformation create-stack $ARGS
         fi
 
-        aws cloudformation wait stack-$OP-complete --stack-name <<parameters.stack_name>>
+        aws cloudformation wait stack-$OP-complete --stack-name <<parameters.stack-name>>

@@ -1,8 +1,19 @@
 description: |
-  Retrieve stack outputs and store them in a JSON file.
+  Retrieve stack outputs from a deployed CloudFormation stack
+  and store them in a JSON file.
 
 parameters:
-  stack_name:
+  stack-name:
     type: string
-  output_json:
+    description: |
+      The CloudFormation stack name as identified inside AWS.
+  output-json:
     type: string
+    description: |
+      The path to the output file that will be created with the
+      CloudFormation stack outputs, in the following format:
+      ```
+      {
+        "Key": "Value"
+      }
+      ```
