@@ -1,0 +1,10 @@
+description: |
+  Create/Update an AWS CloudFormation stack and wait for completion.
+
+parameters:
+  input_json:
+    type: string
+  stack_name:
+    type: string
+  template_file:
+    type: string

@@ -1,0 +1,8 @@
+description: |
+  Retrieve stack outputs and store them in a JSON file.
+
+parameters:
+  stack_name:
+    type: string
+  output_json:
+    type: string

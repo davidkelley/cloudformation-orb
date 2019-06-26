@@ -1,0 +1,11 @@
+steps:
+  - when:
+      condition: <<parameters.output_json>>
+      steps:
+        - run:
+            name: Store stack outputs
+            command: |
+              OUTPUTS=`mktemp`
+              aws cloudformation describe-stacks --stack-name <<parameters.stack_name>> --query 'Stacks[0].Outputs' | jq -r 'map([.OutputKey, .OutputValue]) | map({ (.[0]): .[1] })' > $OUTPUTS
+              mv $OUTPUTS <<parameters.output_json>>
+              cat <<parameters.output_json>> | jq

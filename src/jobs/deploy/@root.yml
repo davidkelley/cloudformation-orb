@@ -1,0 +1,21 @@
+executor: cloudformation
+
+parameters:
+  stack_name:
+    type: string
+  template_file:
+    type: string
+  input_json:
+    type: string
+  output_json:
+    type: string
+    default: ""
+  before_deploy:
+    type: steps
+    default: []
+  after_deploy:
+    type: steps
+    default: []
+  workspace:
+    default: ""
+    type: string

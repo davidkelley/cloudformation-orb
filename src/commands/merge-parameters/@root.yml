@@ -1,0 +1,10 @@
+description: |
+  Merges a source JSON file, into a target stack skeleton JSON file.
+
+parameters:
+  source_json:
+    type: string
+  target_json:
+    type: string
+  destination_json:
+    type: string

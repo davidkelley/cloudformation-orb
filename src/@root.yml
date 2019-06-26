@@ -1,0 +1,4 @@
+version: 2.1
+
+description: |
+  This orb reproduces the functionality & conveniences of AWS CodePipeline inside CircleCI.

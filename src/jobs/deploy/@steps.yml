@@ -1,0 +1,35 @@
+steps:
+
+  - checkout
+
+  - attach_workspace:
+      when:
+        condition: <<parameters.workspace>>
+      at: <<parameters.workspace>>
+
+  - when:
+      condition: <<parameters.before_deploy>>
+      steps: <<parameters.before_deploy>>
+
+  - deploy-and-wait:
+      stack_name: <<parameters.stack_name>>
+      input_json: <<parameters.input_json>>
+      template_file: <<parameters.template_file>>
+
+  - when: 
+      condition: <<parameters.after_deploy>>
+      steps: <<parameters.after_deploy>>
+
+  - save-outputs:
+      stack_name: <<parameters.stack_name>>
+      output_json: <<parameters.output_json>>
+
+  - list-stack-errors:
+      stack_name: <<parameters.stack_name>>
+
+  - persist_to_workspace:
+      when:
+        condition: <<parameters.workspace>>
+      root: <<parameters.workspace>>
+      paths:
+        - "*.json"

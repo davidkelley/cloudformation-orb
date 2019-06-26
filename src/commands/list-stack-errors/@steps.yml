@@ -1,0 +1,9 @@
+steps:
+  - run:
+      name: List stack errors
+      when: on_fail
+      command: |
+        aws cloudformation describe-stack-events \
+          --stack-name <<parameters.stack_name>> \
+          --output table \
+          --query 'reverse(sort_by(StackEvents, &Timestamp))[?ResourceStatusReason != ""]|[?contains(ResourceStatus, `ROLLBACK`) == `true`].{Name:LogicalResourceId,Message:ResourceStatusReason}'

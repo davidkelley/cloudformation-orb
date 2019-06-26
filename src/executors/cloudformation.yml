@@ -1,0 +1,6 @@
+parameters:
+  version:
+    type: string
+    default: latest
+docker:
+  - image: davidkelley/test-orb:<<parameters.version>>
