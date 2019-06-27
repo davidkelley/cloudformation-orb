@@ -18,7 +18,7 @@
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-angular": "^8.0.0",
     "@semantic-release/commit-analyzer": "^6.2.0",
-    "@semantic-release/exec": "^3.3.4",
+    "@semantic-release/exec": "^3.3.5",
     "@semantic-release/git": "^7.0.13",
     "git-cz": "^3.0.1",
     "husky": "^2.6.0",
