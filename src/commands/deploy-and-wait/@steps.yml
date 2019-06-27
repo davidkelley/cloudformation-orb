@@ -2,21 +2,23 @@ steps:
   - run:
       name: Deploy CloudFormation template
       command: |
+        INPUT=`mktemp`
+
         ARGS="\
           --stack-name <<parameters.stack-name>> \
-          --cli-input-json file://<<parameters.input-json>> \
+          --cli-input-json file://$INPUT \
           --template-body file://<<parameters.template-file>> \
           --output table
         "
 
-        cat <<parameters.input-json>> | jq
-
         OP=create
 
         if aws cloudformation describe-stacks --stack-name <<parameters.stack-name>>; then
+          cat <<parameters.input-json>> | jq -r 'del(.DisableRollback, .TimeoutInMinutes, .OnFailure, .EnableTerminationProtection)' > $INPUT
           aws cloudformation update-stack $ARGS
           OP=update
         else
+          cp <<parameters.input-json>> $INPUT
           aws cloudformation create-stack $ARGS
         fi
 
