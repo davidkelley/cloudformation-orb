@@ -23,6 +23,22 @@ jobs:
     steps:
       - checkout
 
+      # Package a cloudformation template, uploading local artifacts required
+      # for deployment into an S3 bucket, under an optional prefix encrypted
+      # with KMS.
+      - cloudformation/package-template:
+          # An AWS CloudFormation template file
+          template-file: cloudformation.yml
+          # The name of the S3 bucket that will be used to store uploaded artifacts
+          # produced by packaging the template.
+          s3-bucket: name-of-ci-s3-bucket
+          # The S3 prefix to be applied to any uploaded artifacts.
+          s3-prefix: /prefix/of/artifacts
+          # The KMS encryption key used to encrypt uploaded artifacts. This is required.
+          kms-key-id: alias/my-key
+          # The location of the packaged cloudformation template file.
+          output-template-file: /workspace/packaged.yml
+
       # Deploy a cloudformation stack. This command creates or updates
       # a stack and waits for the operation to complete.
       - cloudformation/deploy-and-wait:

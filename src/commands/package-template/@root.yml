@@ -1,0 +1,27 @@
+description: |
+  Packages a cloudformation template, uploading local dependencies to an 
+  artifact S3 bucket.
+
+parameters:
+  template-file:
+    type: string
+    description: |
+      The path to a CloudFormation template file in JSON or YAML format.
+  s3-bucket:
+    type: string
+    description: |
+      The name of the S3 bucket that will be used to store uploaded artifacts
+      produced by packaging the template.
+  s3-prefix:
+    type: string
+    default: ""
+    description: |
+      The S3 prefix to be applied to any uploaded artifacts.
+  kms-key-id:
+    type: string
+    description: |
+      The KMS encryption key used to encrypt uploaded artifacts.
+  output-template-file:
+    type: string
+    description: |
+      The location of the packaged cloudformation template file.

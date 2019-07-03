@@ -1,0 +1,13 @@
+steps:
+  - run:
+      name: Package CloudFormation template
+      command: |
+        ARGS="\
+          --template-file <<parameters.template-file>> \
+          --s3-bucket <<parameters.s3-bucket>> \
+          --s3-prefix <<parameters.s3-prefix>> \
+          --kms-key-id <<parameters.kms-key-id>> \
+          --output-template-file <<parameters.output-template-file>>
+        "
+
+        aws cloudformation package $ARGS
