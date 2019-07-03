@@ -3,11 +3,12 @@ steps:
       name: Merge parameters
       command: |
         PATTERN='{ Parameters: (to_entries | map({ ParameterKey: .key, ParameterValue: .value })) }'
+        MERGE_PATTERN='.[0] as $o1 | .[1] as $o2 | ($o1 + $o2) | .Parameters = ($o1.Parameters + $o2.Parameters)'
         COMBINED=`mktemp`
         TRANSFORMED=`mktemp`
         DESTINATION=`mktemp`
         jq -s 'add' <<parameters.source-json>> > $COMBINED
         cat $COMBINED | jq -r "$PATTERN" > $TRANSFORMED
-        jq -s '.[0] * .[1]' <<parameters.target-json>> $TRANSFORMED > $DESTINATION
+        jq -s "$MERGE_PATTERN" <<parameters.target-json>> $TRANSFORMED > $DESTINATION
         mv $DESTINATION <<parameters.destination-json>>
         cat <<parameters.destination-json>> | jq
