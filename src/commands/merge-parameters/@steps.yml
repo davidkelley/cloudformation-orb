@@ -2,7 +2,7 @@ steps:
   - run:
       name: Merge parameters
       command: |
-        PATTERN='{ Parameters: (to-entries | map({ ParameterKey: .key, ParameterValue: .value }))  }'
+        PATTERN='{ Parameters: (to_entries | map({ ParameterKey: .key, ParameterValue: .value })) }'
         COMBINED=`mktemp`
         TRANSFORMED=`mktemp`
         DESTINATION=`mktemp`
