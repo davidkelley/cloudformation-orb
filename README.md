@@ -23,6 +23,20 @@ jobs:
     steps:
       - checkout
 
+      # This command reads parameters with a specific path prefix from SSM Parameter Store 
+      # into the $BASH_ENV for CircleCI. This allows you to use these values as environment 
+      # variables in subsequent steps. For example, if you have a parameter with the name
+      # "/Project/Upload/ArtifactBucket", this would be set as $PROJECT_UPLOAD_ARTIFACT_BUCKET.
+      # 
+      # You can use then use these environment variables in later steps, as demonstrated
+      # in the cloudformation/package-template example below.
+      # 
+      #   Note: To generate the variable key, we replace all slashes with underscores, 
+      #   strip any "special characters" ("-" for example) and 
+      #   convert camel-case to snake-case.
+      - cloudformation/read-parameters:
+          path: /Project
+
       # Package a cloudformation template, uploading local artifacts required
       # for deployment into an S3 bucket, under an optional prefix encrypted
       # with KMS.
@@ -31,7 +45,7 @@ jobs:
           template-file: cloudformation.yml
           # The name of the S3 bucket that will be used to store uploaded artifacts
           # produced by packaging the template.
-          s3-bucket: name-of-ci-s3-bucket
+          s3-bucket: ${PROJECT_UPLOAD_ARTIFACT_BUCKET}
           # The S3 prefix to be applied to any uploaded artifacts.
           s3-prefix: /prefix/of/artifacts
           # The KMS encryption key used to encrypt uploaded artifacts. This is required.

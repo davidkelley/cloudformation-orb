@@ -1,0 +1,18 @@
+description: |
+  This command reads parameters with a specific path prefix from SSM Parameter Store 
+  into the $BASH_ENV for CircleCI. This allows you to use these values as environment 
+  variables in subsequent steps. For example, if you have a parameter with the name
+  "/Project/Upload/ArtifactBucket", this would be set as $PROJECT_UPLOAD_ARTIFACT_BUCKET.
+
+  You can use then use these environment variables in later steps, as demonstrated
+  in the cloudformation/package-template example below.
+
+  To generate the variable key, we replace all slashes with underscores, 
+  strip any "special characters" ("-" for example) and 
+  convert camel-case to snake-case.
+
+parameters:
+  path:
+    type: string
+    description: |
+      The path prefix for parameters

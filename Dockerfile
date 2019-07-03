@@ -11,3 +11,5 @@ RUN apt-get update && \
   apt-get clean
 
 RUN pip3 --no-cache-dir install --upgrade awscli
+
+ADD src/commands /commands

@@ -1,0 +1,8 @@
+steps:
+  - run:
+      name: Read Parameters
+      command: |
+        PARAMETERS=`mktemp`
+        TRANSFORMED=`mktemp`
+        aws ssm get-parameters-by-path --path <<parameters.path>> --query 'Parameters[*].{Name:Name,Value:Value}' > $PARAMETERS
+        JSON_ENV_FILE=$TRANSFORMED node /commands/read-parameters/ >> $BASH_ENV
