@@ -6,6 +6,6 @@ steps:
             name: Store stack outputs
             command: |
               OUTPUTS=`mktemp`
-              aws cloudformation describe-stacks --stack-name <<parameters.stack-name>> --query 'Stacks[0].Outputs' | jq -r 'map([.OutputKey, .OutputValue]) | map({ (.[0]): .[1] })' > $OUTPUTS
+              aws cloudformation describe-stacks --stack-name <<parameters.stack-name>> --query 'Stacks[0].Outputs' | jq -r 'map([.OutputKey, .OutputValue]) | map({ (.[0]): .[1] }) | add' > $OUTPUTS
               mv $OUTPUTS <<parameters.output-json>>
               cat <<parameters.output-json>> | jq
