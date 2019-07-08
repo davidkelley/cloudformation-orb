@@ -16,13 +16,13 @@ steps:
       input-json: <<parameters.input-json>>
       template-file: <<parameters.template-file>>
 
-  - when: 
-      condition: <<parameters.after-deploy>>
-      steps: <<parameters.after-deploy>>
-
   - save-outputs:
       stack-name: <<parameters.stack-name>>
       output-json: <<parameters.output-json>>
+
+  - when: 
+      condition: <<parameters.after-deploy>>
+      steps: <<parameters.after-deploy>>
 
   - list-stack-errors:
       stack-name: <<parameters.stack-name>>
