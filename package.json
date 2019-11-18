@@ -21,7 +21,7 @@
     "@semantic-release/exec": "^3.3.5",
     "@semantic-release/git": "^7.0.13",
     "git-cz": "^3.0.1",
-    "husky": "^2.6.0",
+    "husky": "^3.1.0",
     "mustache": "^3.0.1",
     "semantic-release": "^15.13.18",
     "semantic-release-circleci-orb": "^1.0.0",
